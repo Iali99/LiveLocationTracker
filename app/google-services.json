@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "438301280498",
+    "firebase_url": "https://locationtracking-f9aa2.firebaseio.com",
+    "project_id": "locationtracking-f9aa2",
+    "storage_bucket": "locationtracking-f9aa2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438301280498:android:388033a5af02459a",
+        "android_client_info": {
+          "package_name": "com.example.irfan.livelocationtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438301280498-8a6ug7sojikku7i1pv7c444f07ckn9ac.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.irfan.livelocationtracker",
+            "certificate_hash": "dfed8f8a38a510ea5de36f9b3fe81688c91c2c8d"
+          }
+        },
+        {
+          "client_id": "438301280498-sq2dqhg07vtsrq20hgjjjd7v1juhonac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV4uPC-F8WnJrJg92quxbfAxcNWT-qNlk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438301280498-sq2dqhg07vtsrq20hgjjjd7v1juhonac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
