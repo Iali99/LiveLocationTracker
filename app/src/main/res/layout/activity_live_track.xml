@@ -6,4 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".LiveTrack">
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/liveTrackMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Location is being monitored by the Security and your friends. You are safe!"
+            />
+
+        <Button
+            android:layout_marginVertical="20dp"
+            android:id="@+id/stopLocationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop Live Tracking"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
