@@ -128,7 +128,7 @@ public class ListOnline extends AppCompatActivity implements GoogleApiClient.Con
                     .setValue(new Tracking(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
                             FirebaseAuth.getInstance().getCurrentUser().getUid(),
                             mLastLocation.getLatitude(),
-                            mLastLocation.getLongitude()));
+                            mLastLocation.getLongitude(),0,false));
         }
         else{
             Log.d("LOG","Reached printing toast");

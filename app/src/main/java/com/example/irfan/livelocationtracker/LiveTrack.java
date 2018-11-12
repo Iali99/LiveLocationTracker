@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -47,14 +48,14 @@ public class LiveTrack extends AppCompatActivity  {
 
     private Timer locTimer;
 
-    Button stopButton;
+    ImageButton stopButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_track);
 
-        stopButton = (Button)findViewById(R.id.stopLocationButton);
+        stopButton = (ImageButton) findViewById(R.id.stopLocationButton);
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

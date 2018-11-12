@@ -41,8 +41,8 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
 
-    private static int UPDATE_INTERVAL = 5000;
-    private static int FASTEST_INTERVAL = 3000;
+    private static int UPDATE_INTERVAL = 500;
+    private static int FASTEST_INTERVAL = 300;
 
     private Timer locTimer;
 
@@ -63,6 +63,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
 
         buildGoogleAPIClient();
         createLocationRequest();
+        Global.alertCounter = 0;
         sendLocation();
 
         setupSystem();
@@ -115,19 +116,41 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
                 ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED){
             return;
         }
+        Log.d("LOG","Inside sendLocation");
         mLastLocation =  LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if(mLastLocation != null){
             Log.d("LOG","Sending location to the database");
-            locations.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .setValue(new Tracking(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
-                            FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                            mLastLocation.getLatitude(),
-                            mLastLocation.getLongitude()));
+            double currentLat = mLastLocation.getLatitude();
+            double currentLon = mLastLocation.getLongitude();
+            if(distance(Global.prevLat,Global.prevLon,currentLat,currentLon) <= 1){
+                Global.alertCounter ++;
+                Global.prevAlert = (Global.alertCounter > 5) ? true : false;
+
+                locations.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .setValue(new Tracking(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
+                                FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                                currentLat,
+                                currentLon,Global.alertCounter,Global.prevAlert));
+            }
+            else {
+                Global.alertCounter = 0;
+                Global.prevLat = currentLat;
+                Global.prevLon = currentLon;
+                Global.prevAlert = false;
+
+                locations.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .setValue(new Tracking(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
+                                FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                                currentLat,
+                                currentLon,Global.alertCounter,Global.prevAlert));
+            }
+
+
         }
-        else{
-            Log.d("LOG","Reached printing toast");
-            Toast.makeText(this,"Couldnt get the location",Toast.LENGTH_SHORT).show();
-        }
+//        else{
+//            Log.d("LOG","Reached printing toast");
+//            Toast.makeText(this,"Couldnt get the location",Toast.LENGTH_SHORT).show();
+//        }
     }
 
     @SuppressLint("RestrictedApi")
@@ -146,11 +169,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
         mGoogleApiClient.connect();
     }
 
-    @Override
-    public void onStart(Intent intent, int startId) {
-        if(mGoogleApiClient != null)
-            mGoogleApiClient.disconnect();
-    }
+
 
     @Override
     public void onDestroy() {
@@ -169,9 +188,17 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
                 Log.d("LOG","Sending location to server");
                 sendLocation();
             }
-        },0,10000);
+        },0,1000);
+        startLocationUpdates();
 
+    }
 
+    private void startLocationUpdates() {
+        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED){
+            return;
+        }
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,mLocationRequest,this);
     }
 
     @Override
@@ -186,6 +213,28 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
 
     @Override
     public void onLocationChanged(Location location) {
+        mLastLocation = location;
+        sendLocation();
+    }
 
+    private static final int EARTH_RADIUS = 6371000; // Approx Earth radius in KM
+
+    public static double distance(double startLat, double startLong,
+                                  double endLat, double endLong) {
+
+        double dLat  = Math.toRadians((endLat - startLat));
+        double dLong = Math.toRadians((endLong - startLong));
+
+        startLat = Math.toRadians(startLat);
+        endLat   = Math.toRadians(endLat);
+
+        double a = haversin(dLat) + Math.cos(startLat) * Math.cos(endLat) * haversin(dLong);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return EARTH_RADIUS * c; // <-- d
+    }
+
+    public static double haversin(double val) {
+        return Math.pow(Math.sin(val / 2), 2);
     }
 }

@@ -9,6 +9,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -43,8 +44,11 @@
         <activity android:name=".IncidentReporting" />
         <activity android:name=".IncidentReportDone" />
         <activity android:name=".AfterLogin" />
-        <activity android:name=".LiveTrack"></activity>
-        <service android:name=".LocationService"/>
+        <activity android:name=".LiveTrack" />
+
+        <service android:name=".LocationService" />
+
+        <activity android:name=".Sos"></activity>
     </application>
 
 </manifest>

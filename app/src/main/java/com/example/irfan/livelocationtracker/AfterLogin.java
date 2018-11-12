@@ -5,10 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class AfterLogin extends AppCompatActivity {
 
-    Button liveTracking, sendLocation,reportIncident;
+    ImageButton liveTracking, sendLocation,reportIncident;
 
 
     @Override
@@ -16,7 +17,7 @@ public class AfterLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_login);
 
-        liveTracking = (Button)findViewById(R.id.liveTrackButton);
+        liveTracking = (ImageButton) findViewById(R.id.liveTrackButton);
         liveTracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,7 +25,7 @@ public class AfterLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        sendLocation = (Button)findViewById(R.id.sendLocationButton);
-        reportIncident = (Button)findViewById(R.id.reportIncidentButton);
+        sendLocation = (ImageButton) findViewById(R.id.sendLocationButton);
+        reportIncident = (ImageButton)findViewById(R.id.reportIncidentButton);
     }
 }

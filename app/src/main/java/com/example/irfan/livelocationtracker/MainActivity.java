@@ -6,13 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnLogin, incidentActivity;
+    ImageButton btnLogin;
 
     private final static int LOGIN_PERMISSION=1000;
     @Override
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnLogin = (Button)findViewById(R.id.btnSignIn);
+        btnLogin = (ImageButton) findViewById(R.id.btnSignIn);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,14 +32,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        incidentActivity = (Button)findViewById(R.id.incidentActivity);
-        incidentActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,IncidentReporting.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
