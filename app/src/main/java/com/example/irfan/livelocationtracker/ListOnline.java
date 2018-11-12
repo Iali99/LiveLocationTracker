@@ -127,8 +127,8 @@ public class ListOnline extends AppCompatActivity implements GoogleApiClient.Con
             locations.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                     .setValue(new Tracking(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
                             FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                            String.valueOf(mLastLocation.getLatitude()),
-                            String.valueOf(mLastLocation.getLongitude())));
+                            mLastLocation.getLatitude(),
+                            mLastLocation.getLongitude()));
         }
         else{
             Log.d("LOG","Reached printing toast");

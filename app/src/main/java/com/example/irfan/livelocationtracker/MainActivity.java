@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startNewActivity(int resultCode, Intent data) {
         if(resultCode == RESULT_OK){
-            Intent intent = new Intent(MainActivity.this,ListOnline.class);
+            Intent intent = new Intent(MainActivity.this,AfterLogin.class);
             startActivity(intent);
             finish();
         }

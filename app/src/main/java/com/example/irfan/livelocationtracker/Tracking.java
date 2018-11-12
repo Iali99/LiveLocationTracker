@@ -1,12 +1,13 @@
 package com.example.irfan.livelocationtracker;
 
 public class Tracking {
-    private String email,uid,lat,lng;
+    private String email,uid;
+    private Double lat,lng;
 
     public Tracking() {
     }
 
-    public Tracking(String email, String uid, String lat, String lng) {
+    public Tracking(String email, String uid, Double lat, Double lng) {
         this.email = email;
         this.uid = uid;
         this.lat = lat;
@@ -29,19 +30,19 @@ public class Tracking {
         this.uid = uid;
     }
 
-    public String getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public String getLng() {
+    public Double getLng() {
         return lng;
     }
 
-    public void setLng(String lng) {
+    public void setLng(Double lng) {
         this.lng = lng;
     }
 }
