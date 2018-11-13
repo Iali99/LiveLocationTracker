@@ -169,7 +169,7 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
         mGoogleApiClient.connect();
     }
 
-
+    
 
     @Override
     public void onDestroy() {
@@ -213,8 +213,8 @@ public class LocationService extends Service implements GoogleApiClient.Connecti
 
     @Override
     public void onLocationChanged(Location location) {
-        mLastLocation = location;
-        sendLocation();
+        //mLastLocation = location;
+        //sendLocation();
     }
 
     private static final int EARTH_RADIUS = 6371000; // Approx Earth radius in KM

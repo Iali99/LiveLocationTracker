@@ -26,6 +26,21 @@ public class AfterLogin extends AppCompatActivity {
             }
         });
         sendLocation = (ImageButton) findViewById(R.id.sendLocationButton);
+        sendLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AfterLogin.this,Sos.class);
+                startActivity(intent);
+            }
+        });
         reportIncident = (ImageButton)findViewById(R.id.reportIncidentButton);
+        reportIncident.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AfterLogin.this,IncidentReporting.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

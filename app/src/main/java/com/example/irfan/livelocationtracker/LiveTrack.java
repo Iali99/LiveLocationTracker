@@ -55,11 +55,18 @@ public class LiveTrack extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_track);
 
+        locations = FirebaseDatabase.getInstance().getReference("LiveLocations");
+        onlineRef = FirebaseDatabase.getInstance().getReference().child(".info/connected");
+        counterRef = FirebaseDatabase.getInstance().getReference("lastOnline");
+        currentUserRef = FirebaseDatabase.getInstance().getReference("lastOnline")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
         stopButton = (ImageButton) findViewById(R.id.stopLocationButton);
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 stopService(new Intent(LiveTrack.this, LocationService.class));
+                //locations.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                 Intent intent = new Intent(LiveTrack.this,AfterLogin.class);
                 startActivity(intent);
             }
@@ -67,11 +74,7 @@ public class LiveTrack extends AppCompatActivity  {
 
         locTimer = new Timer();
 
-        locations = FirebaseDatabase.getInstance().getReference("LiveLocations");
-        onlineRef = FirebaseDatabase.getInstance().getReference().child(".info/connected");
-        counterRef = FirebaseDatabase.getInstance().getReference("lastOnline");
-        currentUserRef = FirebaseDatabase.getInstance().getReference("lastOnline")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
 
 
 

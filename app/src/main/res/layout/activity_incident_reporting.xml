@@ -11,10 +11,11 @@
         android:layout_height="551dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="8dp"
+        android:padding="20dp">
 
         <EditText
-            android:paddingVertical="20dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/incidentType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
             android:hint="Enter Incident Type"/>
 
         <EditText
-            android:paddingVertical="20dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/incidentIntensity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +31,7 @@
             android:hint="Enter Incident Intensity"/>
 
         <EditText
-            android:paddingVertical="20dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/incidentLat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +39,7 @@
             android:hint="Enter Latitude"/>
 
         <EditText
-            android:paddingVertical="20dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/incidentLon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,10 +47,11 @@
             android:hint="Enter Longitude"/>
 
         <Button
-            android:paddingVertical="20dp"
+            android:layout_marginTop="40dp"
             android:id="@+id/reportButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="Report Incident"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
